@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title mode="ios" side="large">
+            Trung Tâm Điều Khiển
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content *ngFor="let item of sensorData">
+    <ion-card color="tertiary" mode="ios">
+        <ion-card-header>
+            <ion-card-subtitle>
+                Nhiệt độ
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label>{{item.temperature}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card mode="ios" color="tertiary">
+        <ion-card-header>
+            <ion-card-subtitle>
+                Độ ẩm đất
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content mode="ios">
+            <h2>
+                {{item.earthHumidity}}
+            </h2>
+        </ion-card-content>
+    </ion-card>
+    <ion-card mode="ios" color="tertiary">
+        <ion-card-header>
+            <ion-card-subtitle>
+                Độ ẩm không khí
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content mode="ios">
+            <h2>
+                {{item.airHumidity}}
+            </h2>
+        </ion-card-content>
+    </ion-card>
+    <ion-card mode="ios" color="medium">
+        <ion-grid fixed="true">
+            <ion-row>
+                <ion-col>
+                    <h2>
+                        Máy bơm
+                    </h2>
+                </ion-col>
+                <ion-col>
+                    <ion-toggle color="secondary" mode="ios" (ionChange)="machine($event)" [disabled]="isDisable"></ion-toggle>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <h2>
+                        Đèn
+                    </h2>
+                </ion-col>
+                <ion-col>
+                    <h2>
+                        <ion-toggle color="secondary" mode="ios" (ionChange)="light($event)" [disabled]="isDisable"></ion-toggle>
+                    </h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <h2>
+                        Tự động tưới
+                    </h2>
+                </ion-col>
+                <ion-col>
+                    <h2>
+                        <ion-toggle color="secondary" mode="ios" (ionChange)="autoControl($event)" [checked]="cb_autoControl"></ion-toggle>
+                    </h2>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+</ion-content>

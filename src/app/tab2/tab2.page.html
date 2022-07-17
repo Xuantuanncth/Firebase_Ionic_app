@@ -1,0 +1,195 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title mode="ios" side="large">
+            Lịch Sử
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content mode="ios" lines="full">
+    <ion-card color="light" mode="ios">
+        <ion-item color="light" line="none" (click)="getData(1)">
+            <ion-icon slot="end" name="arrow-down-circle-outline" *ngIf="!showItem.s_temp"></ion-icon>
+            <ion-icon slot="end" name="arrow-up-circle-outline" *ngIf="showItem.s_temp"></ion-icon>
+            <ion-label>
+                Nhiệt Độ
+            </ion-label>
+        </ion-item>
+        <ion-card-content>
+            <div *ngIf="showItem.s_temp">
+                <ion-list lines="none" color="light" *ngFor="let item of temperature; let i = index">
+                    <ion-item color="light" tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+                        <ion-label>
+                            {{item[0]}}
+                        </ion-label>
+                    </ion-item>
+                    <div *ngIf="item.open">
+                        <ion-row>
+                            <ion-col size="1" text-center>
+                                <ion-label color="primary">
+                                    ID
+                                </ion-label>
+                            </ion-col>
+                            <ion-col size="3" text-center>
+                                <ion-label color="primary">
+                                    Time
+                                </ion-label>
+                            </ion-col>
+                            <ion-col size="3" text-center>
+                                <ion-label color="primary">
+                                    Data
+                                </ion-label>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let value of temperatureValue[i]; let i = index">
+                            <ion-col size="1" text-center>{{ i+ 1 }}</ion-col>
+                            <ion-col size="3" text-center> {{value[0]}}</ion-col>
+                            <ion-col size="3" text-center> {{value[1]}} °C</ion-col>
+                        </ion-row>
+                    </div>
+
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card color="light" mode="ios">
+        <ion-item color="light" line="none" (click)="getData(2)">
+            <ion-icon slot="end" name="arrow-down-circle-outline" *ngIf="!showItem.s_airHumi"></ion-icon>
+            <ion-icon slot="end" name="arrow-up-circle-outline" *ngIf="showItem.s_airHumi"></ion-icon>
+            <ion-label>
+                Độ Ẩm Không Khí
+            </ion-label>
+        </ion-item>
+        <ion-card-content>
+            <div *ngIf="showItem.s_airHumi">
+                <ion-list lines="none" color="light" *ngFor="let item of airHumidity; let i = index">
+                    <ion-item color="light" tappable (click)="loadAirHumidity(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+                        <ion-label>
+                            {{item[0]}}
+                        </ion-label>
+                    </ion-item>
+                    <div *ngIf="item.open">
+                        <ion-row>
+                            <ion-col size="1">ID</ion-col>
+                            <ion-col size="3">Time</ion-col>
+                            <ion-col size="3">Data</ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let value of airHumidityValue[i]; let i = index">
+                            <ion-col size="1">{{ i+ 1 }}</ion-col>
+                            <ion-col size="3"> {{value[0]}}</ion-col>
+                            <ion-col size="3"> {{value[1]}} %</ion-col>
+                        </ion-row>
+                    </div>
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card color="light" mode="ios">
+        <ion-item color="light" line="none" (click)="getData(3)">
+            <ion-icon slot="end" name="arrow-down-circle-outline" *ngIf="!showItem.s_earthHumi"></ion-icon>
+            <ion-icon slot="end" name="arrow-up-circle-outline" *ngIf="showItem.s_earthHumi"></ion-icon>
+            <ion-label>
+                Độ Ẩm Đất
+            </ion-label>
+        </ion-item>
+        <ion-card-content>
+            <div *ngIf="showItem.s_earthHumi">
+                <ion-list lines="none" color="light" *ngFor="let item of earthHumidity; let i = index">
+                    <ion-item color="light" tappable (click)="loadEarthHumidity(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+                        <ion-label>
+                            {{item[0]}}
+                        </ion-label>
+                    </ion-item>
+                    <div *ngIf="item.open">
+                        <ion-row>
+                            <ion-col size="1">ID</ion-col>
+                            <ion-col size="3">Time</ion-col>
+                            <ion-col size="3">Data</ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let value of earthHumidityValue[i]; let i = index">
+                            <ion-col size="1">{{ i+ 1 }}</ion-col>
+                            <ion-col size="3"> {{value[0]}}</ion-col>
+                            <ion-col size="3"> {{value[1]}} %</ion-col>
+                        </ion-row>
+                    </div>
+
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card color="light" mode="ios">
+        <ion-item color="light" line="none" (click)="getData(4)">
+            <ion-icon slot="end" name="arrow-down-circle-outline" *ngIf="!showItem.s_light"></ion-icon>
+            <ion-icon slot="end" name="arrow-up-circle-outline" *ngIf="showItem.s_light"></ion-icon>
+            <ion-label>
+                Thời Gian Chiếu Sáng
+            </ion-label>
+        </ion-item>
+        <ion-card-content>
+            <div *ngIf="showItem.s_light">
+                <ion-list lines="none" color="light" *ngFor="let item of timeLight; let i = index">
+                    <ion-item color="light" tappable (click)="loadTimeLight(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+                        <ion-label>
+                            {{item[0]}}
+                        </ion-label>
+                    </ion-item>
+                    <div *ngIf="item.open">
+                        <ion-row>
+                            <ion-col size="1">ID</ion-col>
+                            <ion-col size="3">Time</ion-col>
+                            <ion-col size="3">Data</ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let value of timeLightValue[i]; let i = index">
+                            <ion-col size="1">{{ i+ 1 }}</ion-col>
+                            <ion-col size="3"> {{value[0]}}</ion-col>
+                            <ion-col size="3"> {{value[1]}}</ion-col>
+                        </ion-row>
+                    </div>
+
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card color="light" mode="ios">
+        <ion-item color="light" line="none" (click)="getData(5)">
+            <ion-icon slot="end" name="arrow-down-circle-outline" *ngIf="!showItem.s_warter"></ion-icon>
+            <ion-icon slot="end" name="arrow-up-circle-outline" *ngIf="showItem.s_warter"></ion-icon>
+            <ion-label>
+                Thời Gian Tưới Cây
+            </ion-label>
+        </ion-item>
+        <ion-card-content>
+            <div *ngIf="showItem.s_warter">
+                <ion-list lines="none" color="light" *ngFor="let item of timeWatering; let i = index">
+                    <ion-item color="light" tappable (click)="loadTimeRun(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+                        <ion-label>
+                            {{item[0]}}
+                        </ion-label>
+                    </ion-item>
+                    <div *ngIf="item.open">
+                        <ion-row>
+                            <ion-col size="1">ID</ion-col>
+                            <ion-col size="3">Time</ion-col>
+                            <ion-col size="3">Data</ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let value of timeWateringValue[i]; let i = index">
+                            <ion-col size="1">{{ i+ 1 }}</ion-col>
+                            <ion-col size="3"> {{value[0]}}</ion-col>
+                            <ion-col size="3"> {{value[1]}}</ion-col>
+                        </ion-row>
+                    </div>
+
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

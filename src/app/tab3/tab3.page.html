@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title mode="ios" side="large">
+            Hẹn Giờ
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-item color="secondary" mode="ios">
+            <ion-label style="padding: 20px;">Bật Motor</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStatMotor" (ionChange)="updateTime(1)"></ion-datetime>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-item color="secondary" mode="ios">
+            <ion-label style="padding: 20px;">Tắt Motor</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStopMotor" (ionChange)="updateTime(2)"></ion-datetime>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-item color="secondary" mode="ios">
+            <ion-label style="padding: 20px;">Bật Đèn</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStartLight" (ionChange)="updateTime(3)"></ion-datetime>
+        </ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-item color="secondary" mode="ios">
+            <ion-label style="padding: 20px;">Tắt Đèn</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStopLight" (ionChange)="updateTime(4)"></ion-datetime>
+        </ion-item>
+    </ion-card>
+</ion-content>
