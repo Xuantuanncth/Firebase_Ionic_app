@@ -35,12 +35,12 @@ After the user navigates to Tab 2 (Photos), they can tap/click on the camera but
 5) Run on iOS or Android: See [here](https://ionicframework.com/docs/building/running).
 
 > Create components: ionic g component components/Information
-> Hướng dẫn build app android:
--> Không update code:
-  Sử dụng extensive ION của VSCode để mở Andorid Studio ra rồi build apk
--> Có update code:
-  - Xóa thư mục android cũ
-  - Chạy lệnh build code: npx ionic build
-  - Sử dụng commnad để copy android: npx cap add android
-  - Sử dụng extensive ION của VSCode để mở Android Studio rồi build apk
+## Hướng dẫn build app android:
+- Không update code:
+  - Sử dụng extensive ION của VSCode để mở Andorid Studio ra rồi build apk
+- Có update code:
+  1. Xóa thư mục android cũ
+  2. Chạy lệnh build code: npx ionic build
+  3. Sử dụng commnad để copy android: npx cap add android
+  4. Sử dụng extensive ION của VSCode để mở Android Studio rồi build apk
     
