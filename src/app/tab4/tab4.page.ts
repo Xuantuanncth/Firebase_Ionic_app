@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class Tab4Page implements OnInit {
 
   constructor() { }
-
+  public src_img:any;
+  public src_img1:any;
   ngOnInit() {
+    this.src_img = '../../assets/img/lan.jpg'
+    this.src_img1 ='../../assets/img/chaulan.jpg'
   }
 
 }
