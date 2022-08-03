@@ -29,6 +29,18 @@ export class Tab1Page implements OnInit{
     })
   }
 
+  loadDataRealtime(){
+    this.httpClient.get("https://smarthomedevice-83e1f-default-rtdb.firebaseio.com/Sensor.json").subscribe(data=>{
+        let parserData = JSON.parse("["+JSON.stringify(data)+"]");
+        console.log("================> interval time: ",parserData)
+        this.sensorData = parserData;
+      });
+  }
+
+  public data = setInterval(()=>{
+    this.loadDataRealtime()
+  },5000);
+
   async machine(event){
     console.log("TDX ================> Check machine: ",event.detail.checked);
     if(event.detail.checked == true){
