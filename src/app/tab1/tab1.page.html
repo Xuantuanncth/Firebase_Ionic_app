@@ -5,41 +5,43 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content *ngFor="let item of sensorData">
-    <ion-card color="tertiary" mode="ios">
-        <ion-card-header>
-            <ion-card-subtitle>
-                Nhiệt độ
-            </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-label>{{item.temperature}}</ion-label>
-        </ion-card-content>
-    </ion-card>
-    <ion-card mode="ios" color="tertiary">
-        <ion-card-header>
-            <ion-card-subtitle>
-                Độ ẩm đất
-            </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content mode="ios">
-            <h2>
-                {{item.earthHumidity}}
-            </h2>
-        </ion-card-content>
-    </ion-card>
-    <ion-card mode="ios" color="tertiary">
-        <ion-card-header>
-            <ion-card-subtitle>
-                Độ ẩm không khí
-            </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content mode="ios">
-            <h2>
-                {{item.airHumidity}}
-            </h2>
-        </ion-card-content>
-    </ion-card>
+<ion-content>
+    <div *ngFor="let item of sensorData">
+        <ion-card color="tertiary" mode="ios">
+            <ion-card-header>
+                <ion-card-subtitle>
+                    Nhiệt độ
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-label>{{item.temperature}}</ion-label>
+            </ion-card-content>
+        </ion-card>
+        <ion-card mode="ios" color="tertiary">
+            <ion-card-header>
+                <ion-card-subtitle>
+                    Độ ẩm đất
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content mode="ios">
+                <h2>
+                    {{item.earthHumidity}}
+                </h2>
+            </ion-card-content>
+        </ion-card>
+        <ion-card mode="ios" color="tertiary">
+            <ion-card-header>
+                <ion-card-subtitle>
+                    Độ ẩm không khí
+                </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content mode="ios">
+                <h2>
+                    {{item.airHumidity}}
+                </h2>
+            </ion-card-content>
+        </ion-card>
+    </div>
     <ion-card mode="ios" color="medium">
         <ion-grid fixed="true">
             <ion-row>

@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-tab1',
@@ -11,7 +12,7 @@ export class Tab1Page implements OnInit{
   public isDisable: boolean;
   public cb_autoControl:boolean;
   isChecked:number;
-  public sensorData: any;
+  sensorData: any;
 
   constructor(private httpClient: HttpClient) {}
   ngOnInit(){ 
@@ -26,22 +27,21 @@ export class Tab1Page implements OnInit{
         this.isDisable = true
         this.cb_autoControl = true
       }
-    })
+    });
+    this.loadDataRealtime();
   }
 
   loadDataRealtime(){
-    this.httpClient.get("https://smarthomedevice-83e1f-default-rtdb.firebaseio.com/Sensor.json").subscribe(data=>{
+    setInterval(()=>{ 
+      this.httpClient.get("https://smarthomedevice-83e1f-default-rtdb.firebaseio.com/Sensor.json").subscribe(data=>{
         let parserData = JSON.parse("["+JSON.stringify(data)+"]");
         console.log("================> interval time: ",parserData)
         this.sensorData = parserData;
-      });
+      })
+    },5000)
   }
 
-  public data = setInterval(()=>{
-    this.loadDataRealtime()
-  },5000);
-
-  async machine(event){
+  machine(event){
     console.log("TDX ================> Check machine: ",event.detail.checked);
     if(event.detail.checked == true){
       this.isChecked = 1;
@@ -53,7 +53,8 @@ export class Tab1Page implements OnInit{
       'https://smarthomedevice-83e1f-default-rtdb.firebaseio.com/Control/Motor.json',this.isChecked
       ).subscribe(response => console.log(response) )
   }
-  async light(event){
+
+  light(event){
     console.log("TDX ================> Check light: ",event.detail.checked);
     if(event.detail.checked == true){
       this.isChecked = 1;
@@ -65,7 +66,8 @@ export class Tab1Page implements OnInit{
       'https://smarthomedevice-83e1f-default-rtdb.firebaseio.com/Control/Light.json',this.isChecked
       ).subscribe(response => console.log(response) )
   }
-  async autoControl(event){
+
+  autoControl(event){
     if(event.detail.checked == true){
       this.isDisable = true;
     } else
